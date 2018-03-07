@@ -1,0 +1,167 @@
+<%- include('partials/headNav.ejs'); %>
+    
+    <div class="row content">
+      <div class="col-md-4 offset-md-4">
+
+      <div class="alert alert-danger" id="errorAlert" role="alert">This is a danger alert</div> 
+      <div class="alert alert-success" id="successAlert" role="alert">Success!</div> 
+
+        <form method="POST" action="/process-form">
+          <div class="row">
+            <div class="col input-container">
+              <label for="firstName">First Name</label>
+              <input name="firstName" id="firstName" type="text" class="form-control" placeholder="First name">
+            </div>
+            <div class="col input-container">
+              <label for="lastName">Last Name</label>
+              <input name="lastName" id="lastName" type="text" class="form-control" placeholder="Last name">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col input-container">
+              <label for="email">Email</label>
+              <input name="email" id="email" type="email" class="form-control" placeholder="Email">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col input-container">
+              <label for="phone">Phone #</label>
+              <input name="phone" id="phone" type="text" class="form-control" placeholder="Phone">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col input-container">
+              <label for="message">Message</label>
+              <input name="message" id="message" type="text" class="form-control" placeholder="Message">
+            </div>
+          </div>
+          
+          <div class="row">
+                                 
+            <div class="col">
+                <input type="submit" value="Submit" class="btn btn-block btn-primary my-btn" 
+                onclick="submitForm(event);">
+            </div>
+
+
+          </div>
+        </form>
+        
+      </div>
+    </div>
+
+   
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    <script> 
+      function submitForm(event) {
+        event.preventDefault();
+
+        var errorMessage = null;
+
+        //document.getElementById('errorAlert').style.display = 'none';
+        //document.getElementById('firstName').classList.remove('is-invalid');
+        //document.getElementById('lastName').classList.remove('is-invalid');
+        //document.getElementById('email').classList.remove('is-invalid');
+        //document.getElementById('password').classList.remove('is-invalid');
+
+        var inputs = document.getElementsByClassName('form-control');
+
+        for (var i = 0; i < inputs.length; i++) {
+
+          inputs[i].classList.remove('is-invalid');
+
+        }
+
+        var firstNameValue = document.getElementById('firstName').value;
+        var lastNameValue = document.getElementById('lastName').value;
+        var emailValue = document.getElementById('email').value;
+        var phoneValue = document.getElementById('phone').value;
+        var messageValue = document.getElementById('message').value;
+
+        if(firstNameValue == '') {
+          document.getElementById('firstName').classList.add('is-invalid');
+
+          errorMessage = "Please enter your first name";
+
+          document.getElementById('errorAlert').innerHTML = errorMessage;
+
+          document.getElementById('errorAlert').style.display = 'block';
+        } 
+
+        else  if(lastNameValue == '') {
+          document.getElementById('lastName').classList.add('is-invalid');
+
+          errorMessage = "Please enter your last name";
+
+          document.getElementById('errorAlert').innerHTML = errorMessage;
+
+          document.getElementById('errorAlert').style.display = 'block';
+        } 
+
+        else  if(emailValue == '') {
+          document.getElementById('email').classList.add('is-invalid');
+
+          errorMessage = "Please enter your email";
+
+          document.getElementById('errorAlert').innerHTML = errorMessage;
+
+          document.getElementById('errorAlert').style.display = 'block';
+        } 
+
+        else  if(phoneValue == '') {
+          document.getElementById('phone').classList.add('is-invalid');
+
+          errorMessage = "Please enter your phone number";
+
+          document.getElementById('errorAlert').innerHTML = errorMessage;
+
+          document.getElementById('errorAlert').style.display = 'block';
+        }
+
+         else  if(messageValue == '') {
+          document.getElementById('message').classList.add('is-invalid');
+
+          errorMessage = "Please enter your message";
+
+          document.getElementById('errorAlert').innerHTML = errorMessage;
+
+          document.getElementById('errorAlert').style.display = 'block';
+        }
+
+        // send the data on to the server
+
+        $.ajax({
+          url: "/process-form",
+          dataType: "json",
+          method: "POST",
+          data: {
+            "firstName": firstNameValue,
+            "lastName": lastNameValue,
+            "email": emailValue,
+            "phone": phoneValue,
+            "message": messageValue
+          }, 
+          success: function(result){
+            console.log(result);
+            console.log('ok');
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
+
+
+
+      }
+      
+    </script>
+
+<%- include('partials/footer.ejs'); %>

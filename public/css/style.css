@@ -1,0 +1,117 @@
+body {
+	font-family: 'Special Elite', cursive;
+}
+
+.clear {
+	clear: both;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 9.2vw;
+}
+
+nav {
+	background-image: url("../img/wood.jpg");
+	background-size: cover;
+}
+
+nav ul{
+	list-style: none;
+	text-align: center;
+}
+
+nav li{
+	display: inline-block;
+	padding: 2vw 1vw, 1vw, 1vw;
+	border: .5vw dotted black;
+	margin: .8vw;
+}
+
+nav a, nav a:visited {
+	color: #fff;
+	text-decoration: none;
+	font-family: 'Special Elite', cursive;
+	font-size: 3vw;
+}
+
+nav a:hover, nav a:active {
+	color: black;
+	font-weight: 900;
+}
+
+.top-container img{
+	max-width: 100%;
+	height: auto;
+	margin-bottom: -4px;
+}
+
+.content {
+	max-width: 100%;
+	max-height: 100%;
+	background-color: #3d3d29;
+	padding: 20px 0px 0px 0px;
+	min-height: 100vh;
+}
+
+h1 {
+	color: #fff;
+	font-size: 5vw;
+	font-family: 'Special Elite', cursive;
+	text-align: center;
+}
+
+h2 {
+	color: #fff;
+	font-family: 'Special Elite', cursive;
+	font-size: 2.8vw;
+	text-align: center;
+	margin: 3vw;
+}
+
+p {
+	color: #fff;
+	font-size: 2vw;
+	margin: 3vw;
+}
+
+.fun {
+	padding: .5vw;
+	margin: 2vw;
+	border: .5vw dashed #fff;
+	margin: 1vw;
+	text-align: center;
+}
+
+html {
+	min-height: 100%;
+}
+
+
+.input-container {
+	margin-bottom: 1vw;
+}
+
+.my-btn {
+	background: rgba(255, 255, 255, 0.2);
+	font-weight: bold;
+	padding-top: 5vw;
+	padding-bottom: 1.5vw;
+}
+
+.my-btn:hover {
+	background: rgba(255, 255, 255, 0.4);
+}
+
+label {
+	color: #fff;
+}
+
+.alert {
+	display: none;
+}
